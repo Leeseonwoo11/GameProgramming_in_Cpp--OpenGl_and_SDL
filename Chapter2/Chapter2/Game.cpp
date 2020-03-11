@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "SDL.h"
 #include "SDL_image.h"
 #include <algorithm>
 #include "Actor.h"
@@ -76,6 +77,14 @@ void Game::RemoveActor(Actor * actor)
 	{
 		std::iter_swap(iter, mPendingActors.end() - 1);
 		mPendingActors.pop_back();
+	}
+
+	iter = std::find(mActors.begin(), mActors.end(), actor);
+	if (iter != mActors.end())
+	{
+		std::iter_swap(iter, mActors.end() - 1);
+		mActors.pop_back();
+
 	}
 }
 
@@ -206,12 +215,12 @@ void Game::LoadDate()
 	temp->SetPosition(Vector2(512.0f, 384.0f));
 	BGSpriteComponent* bg = new BGSpriteComponent(temp);
 	bg->SetScreenSize(Vector2(1024.0f, 768.0f));
-	std::vector<SDL_Texture*>bgtexs = { GetTexture("Farback01.png"),GetTexture("Farback02.png") };
+	std::vector<SDL_Texture*>bgtexs = { GetTexture("Assets/Farback01.png"),GetTexture("Assets/Farback02.png") };
 	bg->SetBGTextures(bgtexs);
 	bg->SetScrollSpeed(-100.0f);
 	bg = new BGSpriteComponent(temp, 50);
 	bg->SetScreenSize(Vector2(1024.0f, 768.0f));
-	bgtexs = { GetTexture("Stars.png"),GetTexture("Stars.png") };
+	bgtexs = { GetTexture("Assets/Stars.png"),GetTexture("Assets/Stars.png") };
 	bg->SetBGTextures(bgtexs);
 	bg->SetScrollSpeed(-200.0f);
 }

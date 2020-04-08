@@ -1,196 +1,271 @@
+#pragma once
+
 #include "pch.h"
 #include "Game.h"
+#include <iostream>
 
 
-const int thickness = 15;
-const float paddleH = 100.0f;
-
-Game::Game():Window(nullptr),Renderer(nullptr),TicksCount(0),bIsRunning(true),PaddleDir(0)
+const int thickness = 15; // 벽의 두께	
+const float paddleH = 200.0f; // 패들의 높이
+const float PaddleSpeed = 500.0f;
+const int BallSpeed = 1.0f;
+float num = -1;
+Game::Game() :Window(nullptr)
+, Renderer(nullptr)
+, TickCount(0)
+, IsRunning(true)
 {
-}
 
-Game::~Game()
-{
 }
 
 bool Game::Initialize()
 {
-	PaddlePos.x = 10.0f;
-	PaddlePos.y = 768.0f / 2.0f;
-	BallPos.x = 1024.0f / 2.0f;
-	BallPos.y = 768.0f / 2.0f;
-	BallVel.x = -200.0f;
-	BallVel.y = 235.0f;
-
-
-	int sdlResult = SDL_Init(SDL_INIT_VIDEO);
-	if (sdlResult != 0)
-	{
-		SDL_Log("Failed to create window: %s",SDL_GetError());
-		return false;
-	}
-	Window = SDL_CreateWindow(
-		"GameProgramming Pong-1",
-		100,
-		100,
+	Window = SDL_CreateWindow("CreateWindow",
+		10,
+		10,
 		1024,
 		768,
-		0);
+		00);
 	if (Window == nullptr)
 	{
-		SDL_Log("Failed to create window: %s", SDL_GetError());
+		SDL_Log("Window is nullptr Errcode is %s", SDL_GetError());
 		return false;
 	}
-	Renderer = SDL_CreateRenderer(
-		Window,
-		-1,
+	Renderer = SDL_CreateRenderer(Window, -1,
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (Renderer == nullptr)
+	{
+		SDL_Log("Fail create Renderer %s", SDL_GetError());
+		return false;
+	}
+	PaddlePos.x = 10.0f; //  1p 패들 위치
+	PaddlePos.y = 768.0f / 2;
+
+	Ball a;
+	a.BallPos.x = 1024.0f / 2; // 공 시작 위치
+	a.BallPos.y = 768 / 2;
+	a.BallVel.x = -200.0f; //  공 처음 방향
+	a.BallVel.y = 235.0f;
+	Ballvec.push_back(a);
+
+
+
+	PaddlePos2.x = 1024.0f - 10.0f; // 2p의 패들 위치
+	PaddlePos2.y = 768.0f / 2;
 
 	return true;
 }
 
-void Game::RunLoop()
+void Game::Runloop()
 {
-	while (bIsRunning)
+	while (IsRunning)
 	{
 		ProcessInput();
 		UpdateGame();
 		GenerateOutput();
 	}
+
 }
 
 void Game::Shutdown()
 {
-	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
+	SDL_DestroyWindow(Window);
 	SDL_Quit();
 }
 
 void Game::ProcessInput()
 {
-	SDL_Event Event;
-	while (SDL_PollEvent(&Event))
+	SDL_Event event;
+	while (SDL_PollEvent(&event))
 	{
-		switch (Event.type)
+		switch (event.type)
 		{
 		case SDL_QUIT:
-			bIsRunning = false;
+			IsRunning = false;
 			break;
 		}
 	}
+
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_ESCAPE])
 	{
-		bIsRunning = false;
+		IsRunning = false;
 	}
-	PaddleDir = 0;
+	paddleDir = 0;
+	paddleDir2 = 0;
 	if (state[SDL_SCANCODE_W])
 	{
-		PaddleDir -= 1;
+		paddleDir -= 1;
 	}
 	if (state[SDL_SCANCODE_S])
 	{
-		PaddleDir += 1;
+		paddleDir += 1;
 	}
+	if (state[SDL_SCANCODE_UP])
+	{
+		paddleDir2 -= 1;
+	}
+	if (state[SDL_SCANCODE_DOWN])
+	{
+		paddleDir2 += 1;
+	}
+	if (state[SDL_SCANCODE_SPACE])
+	{
+		if (flag)
+		{
+			Ball b;
+			b.BallPos.x = 1024.0f / 2; // 공 시작 위치
+			b.BallPos.y = 768 / 2;
+			b.BallVel.x = -200.0f*num; //  공 처음 방향
+			b.BallVel.y = 235.0f*num;
+			Ballvec.push_back(b);
+			flag = false;
+			num *= -1;
+		}
+	}
+	if (state[SDL_SCANCODE_RSHIFT])
+	{
+		if (!flag)
+		{
+			Ball b;
+			b.BallPos.x = 1024.0f / 2; // 공 시작 위치
+			b.BallPos.y = 768 / 2;
+			b.BallVel.x = -200.0f*num; //  공 처음 방향
+			b.BallVel.y = 235.0f*num;
+			Ballvec.push_back(b);
+			flag = true;
+			num *= -1;
+		}
+	}
+
 }
 
 void Game::UpdateGame()
 {
-	while (!SDL_TICKS_PASSED(SDL_GetTicks(), TicksCount + 16));// 프레임과 프레임사이의 시간을 16ms로 보장하기 위한 코드 1000/60 = 16 : 1000ms(1초)동안 60장을 보여주니 1장당 평균 16ms소요됨에 따라 16ms를 맞춰주기 위함
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), TickCount + 16));
 
-	float Deltatime = (SDL_GetTicks() - TicksCount) / 1000.0f;
+	float deltatime = (SDL_GetTicks() - TickCount) / 1000.0f;
 
-	if (Deltatime > 0.05f) // 브레이크타임을 걸면 델타타임이 너무 길어져서 뚝뚝 끊김. 끊김 방지하기 위해서 델타타임이 무리하게 길어진다면 0.05로 고정시켜줌 이렇게하면 패들이나 공이 너무 많이 이동하는현상을 없애준다.
+	if (deltatime > 0.05f)
+		deltatime = 0.05f;
+	TickCount = SDL_GetTicks();
+	if (paddleDir != 0)
 	{
-		Deltatime = 0.05f;
-	}
-	TicksCount = SDL_GetTicks();
-
-	if (PaddleDir != 0)
-	{
-		PaddlePos.y += PaddleDir * 300.0f * Deltatime;
+		PaddlePos.y += paddleDir * PaddleSpeed * deltatime;
 		if (PaddlePos.y < (paddleH / 2.0f + thickness))
 		{
-			PaddlePos.y = paddleH / 2.0f + thickness;
+			PaddlePos.y = (paddleH / 2.0f + thickness);
 		}
-		else if (PaddlePos.y > (768 - paddleH / 2.0f - thickness))
+		else if (PaddlePos.y > (768.0f - paddleH / 2.0f - thickness))
 		{
-			PaddlePos.y = 768 -paddleH / 2.0f-thickness;
+			PaddlePos.y = (768.0f - paddleH / 2.0f - thickness);
 		}
 	}
+	if (paddleDir2 != 0)
+	{
+		PaddlePos2.y += paddleDir2 * PaddleSpeed * deltatime;
+		if (PaddlePos2.y < (paddleH / 2.0f + thickness))
+		{
+			PaddlePos2.y = (paddleH / 2.0f + thickness);
+		}
+		else if (PaddlePos2.y > (768.0f - paddleH / 2.0f - thickness))
+		{
+			PaddlePos2.y = (768.0f - paddleH / 2.0f - thickness);
+		}
+	}
+	for (int i = 0; i < Ballvec.size(); i++)
+	{
+		Ballvec[i].BallPos.x += BallSpeed * Ballvec[i].BallVel.x*deltatime;
+		Ballvec[i].BallPos.y += BallSpeed * Ballvec[i].BallVel.y*deltatime;
 
-	BallPos.x += BallVel.x*Deltatime;
-	BallPos.y += BallVel.y*Deltatime;
+		float diff = PaddlePos.y - Ballvec[i].BallPos.y;
+		diff = (diff > 0.0f) ? diff : -diff; // 패들과 공의 y좌표 차이를 절대값으로 바꿈
+		if (diff <= paddleH / 2.0f &&   // 패들의 높이 반경에 있고
+			Ballvec[i].BallPos.x <= 25.0f && Ballvec[i].BallPos.x >= 15.0f && // 공의 x좌표가 패들의 두께를 벗어나지않고 
+			Ballvec[i].BallVel.x < 0.0f) // 공의 방향이 <-(왼쪽)방향으로 날라오는상태 라면
+		{
+			Ballvec[i].BallVel.x *= -1.0f; // 공의x 방향을 반대로 돌려준다 
+		}
+		else if (Ballvec[i].BallPos.x <= 0.0f)
+		{
+			IsRunning = false; // 공이 바깥으로 빠져나감 게임오버
+		}
 
-	float diff = PaddlePos.y - BallPos.y;
-	diff = (diff > 0) ? diff : -diff;
-	if (diff < paddleH / 2.0f && // 패들이 닫는 부분의 높이에 위치하고
-		BallPos.x <= 25.0f &&BallPos.x >= 20.0f && //패들이 닫는 부분까지 x좌표에 도달하고
-		BallVel.x<0.0f) // 공의 방향이 패들방향으로 날라올때
-	{
-		BallVel.x *= -1.0f;
-	}
-	else if (BallPos.x <= 0)
-	{
-		bIsRunning = false;
-	}
-	else if (BallPos.x >= (1024.0f - thickness) && BallVel.x > 0.0f)
-	{
-		BallVel.x *= -1.0f;
-	}
+		float diff2 = PaddlePos2.y - Ballvec[i].BallPos.y;
+		diff2 = (diff2 > 0.0f) ? diff2 : -diff2; // 패들과 공의 y좌표 차이를 절대값으로 바꿈
+		if (diff2 <= paddleH / 2.0f &&   // 패들의 높이 반경에 있고
+			Ballvec[i].BallPos.x >= 1024 - 25.0f && Ballvec[i].BallPos.x <= 1024 - 20.0f && // 공의 x좌표가 패들의 두께를 벗어나지않고 
+			Ballvec[i].BallVel.x > 0.0f) // 공의 방향이 ->(오른쪽)방향으로 날라오는상태 라면
+		{
+			Ballvec[i].BallVel.x *= -1.0f; // 공의x 방향을 반대로 돌려준다 
+		}
+		else if (Ballvec[i].BallPos.x > 1024.0f && Ballvec[i].BallVel.x > 0.0f)
+		{
+			IsRunning = false;
+		}
 
-	if (BallPos.y <= thickness && BallVel.y < 0.0f)
-	{
-		BallVel.y *= -1.0f;
-	}
-	else if (BallPos.y > (768 - thickness) && BallVel.y > 0.0f)
-	{
-		BallVel.y *= -1.0f;
+		if (Ballvec[i].BallPos.y >= (768 - thickness) && Ballvec[i].BallVel.y > 0.0f)
+		{
+			Ballvec[i].BallVel.y *= -1;
+		}
+		else if (Ballvec[i].BallPos.y <= 0.0f + thickness && Ballvec[i].BallVel.y < 0.0f)
+		{
+			Ballvec[i].BallVel.y *= -1;
+		}
 	}
 
 }
 
 void Game::GenerateOutput()
 {
-	SDL_SetRenderDrawColor(
-		Renderer,
-		0,
-		0,
-		255,
-		255
-	);
-	SDL_RenderClear(Renderer);
-	//벽그리기 부분
-	SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
-	SDL_Rect Wall{ 0,0,1024,thickness };
-	SDL_RenderFillRect(Renderer, &Wall);
-	Wall.y = 768 - thickness;
-	SDL_RenderFillRect(Renderer, &Wall);
-	Wall.x = 1024 - thickness;
-	Wall.y = 0;
-	Wall.h = 1024;
-	Wall.w = thickness;
-	SDL_RenderFillRect(Renderer, &Wall);
-	//
-	//공그리기 부분
-	SDL_Rect Ball
+	SDL_SetRenderDrawColor(Renderer, 0, 0, 255, 255); // 먼저 배경을 그린다.
+
+	SDL_RenderClear(Renderer); // 랜더를 클리어
+
+	SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255); //벽을 그리기 위한 색깔셋팅
+
+	SDL_Rect wall //도형 그리기
 	{
-	static_cast<int>(BallPos.x - thickness / 2),
-	static_cast<int>(BallPos.y - thickness / 2),
-	thickness,
-	thickness
+	0,  // 시작점 x축
+	0, //  시작점 y축
+	1024,  // 너비
+	thickness // 높이
 	};
-	SDL_RenderFillRect(Renderer, &Ball);
-	//
-	//패들그리기 부분
+	SDL_RenderFillRect(Renderer, &wall); // wall로 정해준 천장 벽면을 미리 설정한 색으로 채워준다.
+	wall.y = 768.0f - thickness; //시작점 y 수정 아래 벽면으로 수정한다.
+	SDL_RenderFillRect(Renderer, &wall); // 수정한 아래벽면을 그려준다.
+
+
 	SDL_Rect Paddle
 	{
-	static_cast<int>(PaddlePos.x),
-	static_cast<int>(PaddlePos.y - paddleH/2),
-	thickness,
-	static_cast<int>(paddleH)
+		static_cast<int>(PaddlePos.x),
+		static_cast<int>(PaddlePos.y - paddleH / 2),
+		thickness,
+		static_cast<int>(paddleH)
 	};
 	SDL_RenderFillRect(Renderer, &Paddle);
-	//
-	SDL_RenderPresent(Renderer);
+
+	SDL_Rect Paddle2
+	{
+		static_cast<int>(PaddlePos2.x),
+		static_cast<int>(PaddlePos2.y - paddleH / 2),
+		thickness,
+		static_cast<int>(paddleH)
+	};
+	SDL_RenderFillRect(Renderer, &Paddle2);
+
+	for (int i = 0; i < Ballvec.size(); i++)
+	{
+		SDL_Rect Ball
+		{
+			static_cast<int>(Ballvec[i].BallPos.x),
+			static_cast<int>(Ballvec[i].BallPos.y),
+			thickness,
+			thickness
+		};
+		SDL_RenderFillRect(Renderer, &Ball); // 공 그리기
+	}
+	SDL_RenderPresent(Renderer); // 앞버퍼와 뒷버퍼를 스왑한다.
+
 }

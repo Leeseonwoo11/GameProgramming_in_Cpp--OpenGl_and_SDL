@@ -1,5 +1,7 @@
 #pragma once
-#include "SDL/SDL.h"
+#include "SDL.h"
+#include <vector>
+
 
 struct Vector2
 {
@@ -7,14 +9,22 @@ struct Vector2
 	float y;
 };
 
+struct Ball
+{
+	Vector2 BallPos;
+	Vector2 BallVel;
+};
+using namespace std;
 class Game
 {
 public:
 	Game();
-	~Game();
+
+public:
 	bool Initialize();
-	void RunLoop();
+	void Runloop();
 	void Shutdown();
+
 private:
 	void ProcessInput();
 	void UpdateGame();
@@ -22,12 +32,19 @@ private:
 
 	SDL_Window* Window;
 	SDL_Renderer* Renderer;
-	Uint32 TicksCount;
-	bool bIsRunning;
-	int PaddleDir;
+	bool IsRunning;
+	Uint32 TickCount;
+
+	int paddleDir;
+	int paddleDir2;
+
 	Vector2 PaddlePos;
-	Vector2 BallPos;
-	Vector2 BallVel;
+	Vector2 PaddlePos2;
+
+	vector<Ball>Ballvec;
+	bool flag = true;
 
 };
+
+
 

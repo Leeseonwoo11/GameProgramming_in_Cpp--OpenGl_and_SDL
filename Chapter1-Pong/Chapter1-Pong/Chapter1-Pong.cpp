@@ -1,8 +1,9 @@
-﻿// Chapter1-Pong.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+﻿// opengltranning1.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
-
 #include "pch.h"
+#include <iostream>
 #include "Game.h"
+
 
 int main(int argc, char** argv)
 {
@@ -10,9 +11,10 @@ int main(int argc, char** argv)
 	bool success = game.Initialize();
 	if (success)
 	{
-		game.RunLoop();
+		game.Runloop();
 	}
 	game.Shutdown();
+
 	return 0;
 }
 

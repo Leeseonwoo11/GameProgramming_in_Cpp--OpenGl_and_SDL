@@ -1,0 +1,31 @@
+﻿Game.obj : error LNK2019: SDL_GetError 외부 기호(참조 위치: "public: struct SDL_Texture * __cdecl Game::GetTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?GetTexture@Game@@QEAAPEAUSDL_Texture@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_FreeSurface 외부 기호(참조 위치: "public: struct SDL_Texture * __cdecl Game::GetTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?GetTexture@Game@@QEAAPEAUSDL_Texture@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_CreateWindow 외부 기호(참조 위치: "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_DestroyWindow 외부 기호(참조 위치: "public: void __cdecl Game::Shutdown(void)" (?Shutdown@Game@@QEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_GetKeyboardState 외부 기호(참조 위치: "private: void __cdecl Game::ProcessInput(void)" (?ProcessInput@Game@@AEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_PollEvent 외부 기호(참조 위치: "private: void __cdecl Game::ProcessInput(void)" (?ProcessInput@Game@@AEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_Log 외부 기호(참조 위치: "public: struct SDL_Texture * __cdecl Game::GetTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?GetTexture@Game@@QEAAPEAUSDL_Texture@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_CreateRenderer 외부 기호(참조 위치: "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_CreateTextureFromSurface 외부 기호(참조 위치: "public: struct SDL_Texture * __cdecl Game::GetTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?GetTexture@Game@@QEAAPEAUSDL_Texture@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_SetRenderDrawColor 외부 기호(참조 위치: "private: void __cdecl Game::GenerateOutput(void)" (?GenerateOutput@Game@@AEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_RenderClear 외부 기호(참조 위치: "private: void __cdecl Game::GenerateOutput(void)" (?GenerateOutput@Game@@AEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_RenderPresent 외부 기호(참조 위치: "private: void __cdecl Game::GenerateOutput(void)" (?GenerateOutput@Game@@AEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_DestroyTexture 외부 기호(참조 위치: "private: void __cdecl Game::UnloadData(void)" (?UnloadData@Game@@AEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_DestroyRenderer 외부 기호(참조 위치: "public: void __cdecl Game::Shutdown(void)" (?Shutdown@Game@@QEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_GetTicks 외부 기호(참조 위치: "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_Init 외부 기호(참조 위치: "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: SDL_Quit 외부 기호(참조 위치: "public: void __cdecl Game::Shutdown(void)" (?Shutdown@Game@@QEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: IMG_Init 외부 기호(참조 위치: "public: bool __cdecl Game::Initialize(void)" (?Initialize@Game@@QEAA_NXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: IMG_Quit 외부 기호(참조 위치: "public: void __cdecl Game::Shutdown(void)" (?Shutdown@Game@@QEAAXXZ) 함수)에서 확인하지 못했습니다.
+Game.obj : error LNK2019: IMG_Load 외부 기호(참조 위치: "public: struct SDL_Texture * __cdecl Game::GetTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?GetTexture@Game@@QEAAPEAUSDL_Texture@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) 함수)에서 확인하지 못했습니다.
+SpriteComponent.obj : error LNK2019: SDL_QueryTexture 외부 기호(참조 위치: "public: virtual void __cdecl SpriteComponent::SetTexture(struct SDL_Texture *)" (?SetTexture@SpriteComponent@@UEAAXPEAUSDL_Texture@@@Z) 함수)에서 확인하지 못했습니다.
+SpriteComponent.obj : error LNK2019: SDL_RenderCopyEx 외부 기호(참조 위치: "public: virtual void __cdecl SpriteComponent::Draw(struct SDL_Renderer *)" (?Draw@SpriteComponent@@UEAAXPEAUSDL_Renderer@@@Z) 함수)에서 확인하지 못했습니다.
+MSVCRTD.lib(exe_main.obj) : error LNK2019: main 외부 기호(참조 위치: "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 함수)에서 확인하지 못했습니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SDL\lib\win\x86\SDL2.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SDL\lib\win\x86\SDL2main.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SDL\lib\win\x86\SDL2_ttf.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SDL\lib\win\x86\SDL2_mixer.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SDL\lib\win\x86\SDL2_image.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\GLEW\lib\win\x86\glew32.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SOIL\lib\win\x86\SOIL.lib : warning LNK4272: 'x86' 라이브러리 컴퓨터 종류가 'x64' 대상 컴퓨터 종류와 충돌합니다.
+C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\Chapter3\x64\Debug\Chapter3.exe : fatal error LNK1120: 23개의 확인할 수 없는 외부 참조입니다.

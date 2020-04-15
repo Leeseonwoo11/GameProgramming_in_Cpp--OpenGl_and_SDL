@@ -1,6 +1,9 @@
-﻿  Game.cpp
+﻿  pch.cpp
+  Chapter1-Pong.cpp
+  Game.cpp
 c:\study\algorithm-study\gameprogramming_in_cpp--opengl_and_sdl\chapter1-pong\chapter1-pong\game.cpp(11): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\study\algorithm-study\gameprogramming_in_cpp--opengl_and_sdl\chapter1-pong\chapter1-pong\game.cpp(177): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 c:\study\algorithm-study\gameprogramming_in_cpp--opengl_and_sdl\chapter1-pong\chapter1-pong\game.cpp(236): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\study\algorithm-study\gameprogramming_in_cpp--opengl_and_sdl\chapter1-pong\chapter1-pong\game.cpp(258): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다...
   Chapter1-Pong.vcxproj -> C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\Chapter1-Pong\Debug\Chapter1-Pong.exe

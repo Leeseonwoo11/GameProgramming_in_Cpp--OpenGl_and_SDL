@@ -165,6 +165,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="LaserPool.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="Random.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="Laser.h" />
+    <ClInclude Include="LaserPool.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="Random.h" />

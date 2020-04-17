@@ -1,16 +1,2 @@
-﻿  Actor.cpp
-  Asteroid.cpp
-  Chapter3.cpp
-  CircleComponent.cpp
-  Component.cpp
-  Game.cpp
-  InputComponent.cpp
-  Laser.cpp
-  Math.cpp
-  MoveComponent.cpp
-  Random.cpp
-  Ship.cpp
-c:\study\algorithm-study\gameprogramming_in_cpp--opengl_and_sdl\chapter3\chapter3\ship.cpp(45): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
-  SpriteComponent.cpp
-  코드를 생성하고 있습니다...
+﻿  LaserPool.cpp
   Chapter3.vcxproj -> C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\Chapter3\Debug\Chapter3.exe

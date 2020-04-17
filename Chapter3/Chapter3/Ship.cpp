@@ -5,6 +5,9 @@
 #include "Laser.h"
 #include "CircleComponent.h"
 #include "Asteroid.h"
+#include "LaserPool.h"
+
+#include <iostream>
 
 
 Ship::Ship(Game * game)
@@ -24,7 +27,10 @@ Ship::Ship(Game * game)
 
 	Circle = new CircleComponent(this);
 	Circle->SetRadius(40.0f);
+
+	mLaserPool = new LaserPool(game,40);
 }
+
 
 void Ship::UpdateActor(float deltatime)
 {
@@ -61,12 +67,12 @@ void Ship::ActorInput(const uint8_t * keystate)
 {
 	if (keystate[SDL_SCANCODE_SPACE] && mLaserCooldown <= 0.0f)
 	{
-		Laser* laser = new Laser(GetGame());
-		laser->SetPosition(GetPosition());
-		laser->SetRotation(GetRotation());
-		Laser* laser2 = new Laser(GetGame());
-		laser2->SetPosition(GetPosition());
-		laser2->SetRotation(GetRotation()+Math::Pi);
-		mLaserCooldown = 0.1f;
+		Laser* temp = mLaserPool->GetLaser();
+		if (temp != nullptr)
+		{
+			temp->SetState(Actor::EActive);
+			temp->SetPosition(GetPosition());
+			temp->SetRotation(GetRotation());
+		}
 	}
 }

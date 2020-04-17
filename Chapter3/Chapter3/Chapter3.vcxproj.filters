@@ -54,6 +54,9 @@
     <ClCompile Include="Math.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="LaserPool.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -90,6 +93,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Math.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserPool.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

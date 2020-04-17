@@ -5,7 +5,6 @@ class Ship :
 {
 public:
 	Ship(class Game* game);
-
 	void UpdateActor(float deltatime) override;
 	void ActorInput(const uint8_t* keystate) override;
 
@@ -14,6 +13,7 @@ private:
 	class CircleComponent* Circle;
 	float ShipCoolTime = 0.0f;
 	bool flag = false;
+	class LaserPool* mLaserPool;
 
 };
 

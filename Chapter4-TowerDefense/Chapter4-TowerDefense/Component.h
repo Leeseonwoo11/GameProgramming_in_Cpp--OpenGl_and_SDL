@@ -10,7 +10,7 @@ public:
 	virtual void ProcessInput(const uint8_t* keystate) {}
 
 	int GetUpdateOrder() { return mUpdateOrder; }
-private:
+protected:
 	class Actor* mOwner;
 	int mUpdateOrder;
 };

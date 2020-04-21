@@ -3,8 +3,8 @@ class AIState
 {
 public:
 	AIState(class AIComponent* owner) :mOwner(owner) {}
-	virtual void Update(float deltatime);
-	virtual void OnEnter() = 0; // 순수가상함수 다른데서 재정의해서 사용함
+	virtual void Update(float deltatime) = 0;// 순수가상함수 다른데서 재정의해서 사용함
+	virtual void OnEnter() = 0; // 순수가상함수
 	virtual void OnExit() = 0; // 순수가상함수
 
 	virtual const char* GetName() const = 0;// 순수가상함수

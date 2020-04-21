@@ -23,11 +23,11 @@ public:
 	void ProcessInput(const uint8_t* keystate);
 	virtual void ActorInput(const uint8_t* keystate);
 	
-	const Vector2& GetPostion() { return mPosition; }
+	const Vector2& GetPosition() const { return mPosition; }
 	void SetPosition(const Vector2& pos) { mPosition = pos; }
-	float GetScale() { return mScale; }
+	float GetScale() const { return mScale; }
 	void SetScale(float scale) { mScale = scale; }
-	float GetRotation() { return mRotation; }
+	float GetRotation() const { return mRotation; }
 	void SetRotation(float rotation) { mRotation = rotation; }
 
 	Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }

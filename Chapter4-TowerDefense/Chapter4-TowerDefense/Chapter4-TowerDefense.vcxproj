@@ -23,7 +23,7 @@
     <ProjectGuid>{45222A56-5B57-4574-A23F-8677FC1136C3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Chapter4TowerDefense</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -91,12 +91,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\GLEW\include\GL;C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SDL\include\SDL;C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SOIL\include\SOIL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\GLEW\include\GL;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SDL\include\SDL;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SOIL\include\SOIL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\GLEW\lib\win\x86;C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SDL\lib\win\x86;C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SOIL\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\GLEW\lib\win\x86;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SDL\lib\win\x86;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SOIL\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -126,12 +126,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\GLEW\include\GL;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SDL\include\SDL;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SOIL\include\SOIL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\GLEW\lib\win\x86;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SDL\lib\win\x86;D:\C++Study\GameProgramming_in_Cpp--OpenGl_and_SDL\SOIL\lib\win\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

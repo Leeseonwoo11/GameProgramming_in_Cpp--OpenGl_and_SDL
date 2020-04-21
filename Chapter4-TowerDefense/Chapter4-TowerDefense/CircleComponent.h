@@ -8,7 +8,7 @@ class CircleComponent :
 public:
 	CircleComponent(class Actor* owner);
 	void SetRadius(float radius) { mRadius = radius; }
-	float GetRadius() { return mRadius; }
+	float GetRadius() const;
 
 	const Vector2& GetCenter() const;
 private:

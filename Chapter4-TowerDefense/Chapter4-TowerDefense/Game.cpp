@@ -249,10 +249,10 @@ Enemy * Game::Getnearestenemy(const Vector2 & pos)
 	if (mEnemies.size() > 0)
 	{
 		best = mEnemies[0];
-		float bestDistq = (pos - mEnemies[0]->GetPostion()).LengthSq();
+		float bestDistq = (pos - mEnemies[0]->GetPosition()).LengthSq();
 		for (size_t i = 1; i < mEnemies.size(); i++)
 		{
-			float newDistSq = (pos - mEnemies[i]->GetPostion()).LengthSq();
+			float newDistSq = (pos - mEnemies[i]->GetPosition()).LengthSq();
 			if (newDistSq < bestDistq)
 			{
 				bestDistq = newDistSq;

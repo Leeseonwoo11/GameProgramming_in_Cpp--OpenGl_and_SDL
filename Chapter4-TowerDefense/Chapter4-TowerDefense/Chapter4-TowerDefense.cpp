@@ -6,8 +6,13 @@
 
 int main(int argc, char** argv)
 {
-    std::cout << "Hello World!\n";
-
+	Game game;
+	bool success = game.Initialize();
+	if (success)
+	{
+		game.RunLoop();
+	}
+	game.ShutDown();
 	return 0;
 }
 

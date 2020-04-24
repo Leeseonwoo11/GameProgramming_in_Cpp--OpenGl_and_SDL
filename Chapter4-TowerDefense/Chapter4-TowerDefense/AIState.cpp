@@ -3,19 +3,16 @@
 #include "SDL_log.h"
 
 
+
 void AIPatrol::Update(float deltatime)
 {
 	SDL_Log("Updating %s state", GetName());
-	bool dead = true;
-	if (dead)
-	{
-		mOwner->ChangeState("Death");
-	}
 }
 
 void AIPatrol::OnEnter()
 {
 	SDL_Log("Entering %s state", GetName());
+	
 }
 
 void AIPatrol::OnExit()

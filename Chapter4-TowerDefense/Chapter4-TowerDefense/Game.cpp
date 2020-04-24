@@ -77,6 +77,18 @@ void Game::ProcessInput()
 	{
 		mGrid->BuildTower();
 	}
+	if (keystate[SDL_SCANCODE_1])
+	{
+		aic->ChangeState("Patrol");
+	}
+	if (keystate[SDL_SCANCODE_2])
+	{
+		aic->ChangeState("Death");
+	}
+	if (keystate[SDL_SCANCODE_3])
+	{
+		aic->ChangeState("Attack");
+	}
 	int x, y;
 	Uint32 buttons = SDL_GetMouseState(&x, &y);
 	if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
@@ -142,7 +154,17 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-	mGrid = new Grid(this);
+	mGrid = new Grid(this);// 타일들을 가지고 있는 그리드 클래스
+	
+	// AI state를 적용하고 로그를 띄워보기 위해서 초기화하였다.
+	a = new Actor(this);
+	aic = new AIComponent(a);
+	aic->RegisterState(new AIPatrol(aic));
+	aic->RegisterState(new AIDeath(aic));
+	aic->RegisterState(new AIAttack(aic));
+
+	aic->ChangeState("Patrol");
+
 }
 
 void Game::UnloadData()
@@ -261,4 +283,11 @@ Enemy * Game::Getnearestenemy(const Vector2 & pos)
 		}
 	}
 	return best;
+}
+
+void Game::CountingGoalEnemy() //목표에 적이 들어서면 실행된다.
+{
+	EnemyGoalCount++; // 골에 들어간 적 수 +1
+	if(EnemyGoalCount == 10)
+		bIsRunning = false;
 }

@@ -1,4 +1,7 @@
 #pragma once
+// 이 게임에서는 사용되지 않는 코드
+// AI의 상태에 해당하는 코드들로 지금은 상태에 따라 로그를 띄워준다.
+
 class AIState
 {
 public:

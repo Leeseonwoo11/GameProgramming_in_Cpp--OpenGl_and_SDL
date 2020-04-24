@@ -24,6 +24,7 @@ public:
 	std::vector<class Enemy*>& GetEnemies() { return mEnemies; }
 	class Enemy* Getnearestenemy(const Vector2& pos);
 
+	void CountingGoalEnemy();
 
 private:
 	void ProcessInput();
@@ -47,5 +48,10 @@ private:
 	std::vector<class Enemy*> mEnemies;
 	class Grid* mGrid;
 	float mNexEnemy;
+
+
+	class Actor* a;
+	class AIComponent* aic;
+	int EnemyGoalCount = 0;
 };
 

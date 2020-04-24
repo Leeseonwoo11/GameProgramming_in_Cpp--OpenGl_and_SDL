@@ -35,5 +35,6 @@ void Enemy::UpdateActor(float deltatime)
 	if (Math::NearZero(diff.Length(), 10.0f))
 	{
 		SetState(EDead);
+		GetGame()->CountingGoalEnemy();
 	}
 }

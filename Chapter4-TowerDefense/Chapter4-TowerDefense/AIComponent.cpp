@@ -40,3 +40,4 @@ void AIComponent::RegisterState(AIState * state)
 {
 	mStateMap.emplace(state->GetName(), state);
 }
+

@@ -1,2 +1,5 @@
-﻿  NavComponent.cpp
+﻿  AIComponent.cpp
+  AIState.cpp
+  Game.cpp
+  코드를 생성하고 있습니다...
   Chapter4-TowerDefense.vcxproj -> C:\Study\Algorithm-Study\GameProgramming_in_Cpp--OpenGl_and_SDL\Chapter4-TowerDefense\Debug\Chapter4-TowerDefense.exe
